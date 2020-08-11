@@ -1,32 +1,36 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import styled from "styled-components"
 
-/*
- * This component is built using `gatsby-image` to automatically serve optimized
- * images with lazy loading and reduced file sizes. The image is loaded using a
- * `useStaticQuery`, which allows us to load the image from directly within this
- * component, rather than having to pass the image data down from pages.
- *
- * For more information, see the docs:
- * - `gatsby-image`: https://gatsby.dev/gatsby-image
- * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
- */
+const ImageWrapper = styled.figure`
+  position: relative;
+  text-align: center;
+  height: ${props => props.height ? props.height : "100%"};
+  width: ${props => props.width ? props.width : "100%"};
+  .gatsby-image-wrapper {
+    height: ${props => props.height ? props.height : "100%"};
+    width: ${props => props.width ? props.width : "100%"};
+  }
+`
 
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+const Image = (props) => {
+  if (props.fluid) {
+    return (
+      <ImageWrapper width={props.width} height={props.height}>
+        <Img fluid={props.fluid} imgStyle={{objectFit:"cover"}} />
+      </ImageWrapper>
+    )
+  }
+  else if (props.fixed) {
+    return (
+      <ImageWrapper width={props.width} height={props.height}>
+        <Img fixed={props.fixed} imgStyle={{objectFit:"cover"}} />
+      </ImageWrapper>
+    )
+  }
+  else {
+    return null
+  }
 }
 
 export default Image
