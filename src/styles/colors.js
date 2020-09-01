@@ -11,12 +11,14 @@ const colors = {
     nineHundred: "#1A202C"
   },
   primary: {
-    sixHundred: "#243449"
+    threeHundred: "#0d0df2",
+    sixHundred: "#000081",
+    nineHundred: "#000033"
   },
   white: "#fff",
   cream: "#fffdd0",
-  kraft: "#8a5842",
   black: "#000",
+  yellow: "#fdb44e",
   shadow: {
     float: "rgba(0,0,0,0.2)",
     inset: "rgba(0,0,0,0.4)",

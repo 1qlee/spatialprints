@@ -6,8 +6,10 @@ const Columns = styled.div`
 
 const Column = styled.div`
   height: 100%;
-  padding: 0 1rem;
   width: ${props => props.width ? props.width : "50%"};
+  &:first-child {
+    margin-right: 2rem;
+  }
 `
 
 export { Columns, Column }

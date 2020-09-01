@@ -21,6 +21,14 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/ // See below to configure properly
+        }
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
@@ -44,8 +52,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Karla\:400,400i,700,700i`,
-          `Raleway\:400,700`
+          `Josefin Sans\:400,400i,700,700i`,
+          `Libre Baskerville\:400,700`
         ]
       }
     },

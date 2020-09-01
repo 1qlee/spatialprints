@@ -1,7 +1,30 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+import colors from "../styles/colors"
+
+const shadowForm = keyframes`
+  from {
+    opacity: 0;
+    background-color: transparent;
+  }
+  to {
+    opacity: 1;
+    background-color: ${colors.gray.threeHundred};
+    transform: translate(-10px,10px);
+  }
+`
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
 const Catalog = styled.main`
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const CatalogSection = styled.section`
@@ -9,8 +32,71 @@ const CatalogSection = styled.section`
 `
 
 const CatalogItems = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  animation: ${fadeIn} 0.2s linear;
+  width: 300px;
+  .catalog-content {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  figure {
+    margin-bottom: 2rem;
+    transition: transform 0.2s;
+    will-change: transform;
+    &::before {
+      animation: ${shadowForm} 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      content: "";
+      height: 100%;
+      width: 100%;
+      background: ${colors.gray.threeHundred};
+      left: 0;
+      top: 0;
+      position: absolute;
+      border-radius: 0.5rem;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translate(-10px,10px);
+    }
+  }
+  h4 {
+    margin: 1rem 0;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  &:hover {
+    .catalog-content {
+      box-shadow: 1px 1px 4px ${colors.shadow.float};
+      border-color: ${colors.primary.sixHundred};
+    }
+    figure {
+      transform: translate(-5px, 5px);
+      &::before {
+        transform: translate(-5px, 5px);
+        background: ${colors.gray.threeHundred};
+      }
+    }
+  }
+  &:active {
+    figure {
+      transform: translate(-5px, 7px);
+      &::before {
+        top: 1px;
+        left: 0;
+        transform: translate(0,0);
+      }
+    }
+  }
+  a {
+    &:focus {
+      .gatsby-image-wrapper {
+        border: 2px solid ${colors.primary.sixHundred};
+      }
+    }
+  }
+  &:not(:last-child) {
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
 `
 
 const CatalogItem = styled.div`

@@ -5,24 +5,22 @@ exports.createPages = ({ graphql, actions }) => {
   const productPageTemplate = path.resolve('./src/components/layouts/product.js')
 
   const createProductPage = product => {
-    console.log(product.slug)
+    console.log(product.title)
     createPage({
-      path: `products/${product.slug}`,
+      path: `products/${product.title}`,
       component: productPageTemplate,
       context: {
-        slug: product.slug,
-        id: product.productId
+        category: product.title,
       },
     })
   }
 
   return graphql(`
     query productPageQuery {
-      allContentfulSpatialPrint {
+      allContentfulCategory {
         edges {
           node {
-            slug
-            productId
+            title
           }
         }
       }
@@ -32,7 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    result.data.allContentfulSpatialPrint.edges.forEach(edge => {
+    result.data.allContentfulCategory.edges.forEach(edge => {
       createProductPage(edge.node)
     })
   })

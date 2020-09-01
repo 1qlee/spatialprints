@@ -5,7 +5,7 @@ const Content = styled.div`
   display: block;
   margin: 0;
   h1,h2,h3,h4,h5,h6 {
-    color: ${props => props.dark ? colors.primary.oneHundred : colors.gray.nineHundred} !important;
+    color: ${props => props.dark ? colors.primary.oneHundred : colors.gray.nineHundred};
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -22,7 +22,9 @@ const Content = styled.div`
   p {
     color: ${props => props.dark ? colors.primary.threeHundred : colors.gray.eightHundred};
     line-height: 1.5;
-    margin-bottom: 1rem;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
   }
   small {
     color: ${props => props.dark ? colors.primary.threeHundred : colors.gray.eightHundred};
@@ -33,20 +35,31 @@ const Content = styled.div`
   }
 `
 
-const ContentHeader = styled.h3`
-  color: ${colors.gray.eightHundred};
-  letter-spacing: 1px;
-  font-size: 0.75rem;
+const ContentHeader = styled.div`
+  margin-bottom: 1rem;
+  border-bottom: 1px solid ${colors.yellow};
+  p {
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 1px;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background-color: ${colors.yellow};
+    font-size: 0.75rem;
+    font-family: "Josefin Sans";
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+  }
 `
 
 const ContentBlock = styled.div`
   display: flex;
   margin-bottom: 1rem;
   p {
-    &:first-child {
+    &.heading {
       margin-right: 1rem;
       min-width: 75px;
       font-weight: 700;
+      white-space: nowrap;
     }
   }
 `

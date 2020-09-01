@@ -2,40 +2,28 @@ import React from "react"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
 
+import { Content } from "../components/content"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
-import Input from "../components/input"
-import { Catalog, CatalogSection, CatalogHeader, CatalogItems, CatalogItem } from "../components/catalog"
+import { Input } from "../components/form"
+import { Catalog, CatalogItems } from "../components/catalog"
 
 const ProductsPage = ({ data }) => (
   <Layout>
     <SEO title="Products" />
     <h1>Materials</h1>
-    <Input placeholder="Search materials" />
     <Catalog style={{marginTop: `2rem`}}>
       {data.categories.edges.map(({ node: category}) => (
-        <CatalogSection>
-          <CatalogHeader>
-            <h4>{category.title}</h4>
-          </CatalogHeader>
-          <CatalogItems>
-            {data.products.edges.map(({ node: product }) => {
-              return (
-                product.category == category.title ? (
-                  <CatalogItem>
-                    <Link to={`/products/${product.slug}`}>
-                      <Image fluid={product.thumbnail.fluid} width="250px" height="250px" />
-                      <p>{product.title}</p>
-                    </Link>
-                  </CatalogItem>
-                ) : (
-                  null
-                )
-              )
-            })}
-          </CatalogItems>
-        </CatalogSection>
+        <CatalogItems>
+          <Link to={`/products/${category.title}`}>
+            <Image fluid={category.image.fluid} width="300px" height="300px" />
+            <Content className="catalog-content">
+              <p style={{fontWeight:'700',textTransform: 'capitalize'}}>{category.title}</p>
+              <p>{category.tagline}</p>
+            </Content>
+          </Link>
+        </CatalogItems>
       ))}
     </Catalog>
   </Layout>
@@ -47,17 +35,8 @@ export const query = graphql`
       edges {
         node {
           title
-        }
-      }
-    }
-    products: allContentfulSpatialPrint(sort: {fields: [title], order: ASC}) {
-      edges {
-        node {
-          title
-          category
-          slug
-          productId
-          thumbnail {
+          tagline
+          image {
             fluid {
               ...GatsbyContentfulFluid
             }
