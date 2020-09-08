@@ -13,15 +13,18 @@ const Button = styled.button`
   line-height: 1;
   padding: 1rem;
   text-decoration: none;
-  transition: transform 0.2s, background-color 0.2s, color 0.2s, border 0.2s;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
   white-space: nowrap;
   will-change: transform;
   .icon {
     stroke: ${props => props.color};
   }
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 0 0 ${colors.shadow.float};
+  &:hover {
+    cursor: pointer;
+    &:not(.is-selected) {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px ${colors.shadow.float};
+    }
   }
   &.is-inverted {
     background-color: ${colors.white};
@@ -54,6 +57,10 @@ const Button = styled.button`
   }
   &.is-fullwidth {
     width: 100%;
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 0 0 ${colors.shadow.float};
   }
 `
 

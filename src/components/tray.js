@@ -6,21 +6,9 @@ import { Button } from "./button"
 import Tag from "./tag"
 import Image from "./image"
 
-const slideUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
-
 const StyledTray = styled.div`
   -webkit-overflow-scrolling: touch;
   align-items: center;
-  animation: ${slideUp} 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 1px 1px 4px 1px ${colors.shadow.float};
   bottom: 0;
   display: flex;
@@ -167,7 +155,7 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
     <StyledTray ref={trayRef} onMouseDown={e => handleMouseDown(e)} onMouseLeave={() => handleMouseLeave()} onMouseUp={() => handleMouseUp()} onMouseMove={e => handleMouseMove(e)}>
       {allProducts.edges.map(({ node: product }, index) => (
         <TrayImageWrapper key={product.productId} className={`${currentProduct === index ? "is-selected" : ""}`} onClick={e => handleClick(e, index)} data-product={product.title}>
-          <Image className="has-shadow" fluid={product.images[0].fluid} height="65px" width="65px" draggable={false} />
+          <Image className="has-shadow" fluid={product.images[0].fluid} height="65px" width="65px" draggable={false} loading="eager"/>
           <TrayImageContent>
             <TrayImageHeader>{product.title}</TrayImageHeader>
             <p className={product.availability === "In Stock" ? "is-available" : null}>{product.availability}</p>

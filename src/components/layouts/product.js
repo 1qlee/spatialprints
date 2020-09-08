@@ -199,12 +199,6 @@ export const query = graphql`
           description {
             json
           }
-          data {
-            materials {
-              name
-              availability
-            }
-          }
         }
       }
     }

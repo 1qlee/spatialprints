@@ -49,7 +49,7 @@ const CatalogItems = styled.div`
       content: "";
       height: 100%;
       width: 100%;
-      background: ${colors.gray.threeHundred};
+      background: ${colors.gray.twoHundred};
       left: 0;
       top: 0;
       position: absolute;
@@ -72,7 +72,6 @@ const CatalogItems = styled.div`
       transform: translate(-5px, 5px);
       &::before {
         transform: translate(-5px, 5px);
-        background: ${colors.gray.threeHundred};
       }
     }
   }

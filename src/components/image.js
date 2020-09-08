@@ -24,14 +24,14 @@ const Image = (props) => {
   if (props.fluid) {
     return (
       <ImageWrapper className={props.className} width={props.width} height={props.height}>
-        <Img fluid={props.fluid} imgStyle={{objectFit:"cover"}} draggable={props.draggable} onDragStart="return false;" />
+        <Img fluid={props.fluid} imgStyle={{objectFit:"cover"}} draggable={props.draggable} onDragStart="return false;" loading={props.loading} />
       </ImageWrapper>
     )
   }
   else if (props.fixed) {
     return (
       <ImageWrapper className={props.className} width={props.width} height={props.height}>
-        <Img fixed={props.fixed} imgStyle={{objectFit:"cover"}} draggable={props.draggable} />
+        <Img fixed={props.fixed} imgStyle={{objectFit:"cover"}} draggable={props.draggable} loading={props.loading} />
       </ImageWrapper>
     )
   }

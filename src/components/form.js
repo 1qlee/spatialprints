@@ -7,17 +7,6 @@ const Form = styled.form`
   margin-bottom: 1rem;
 `
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1
-    transform: translateX(0);
-  }
-`
-
 const FormWrapper = styled.div`
   &.form-enter {
     opacity: 0;
@@ -39,7 +28,6 @@ const FormWrapper = styled.div`
 `
 
 const Details = styled.div`
-  animation: ${fadeIn} 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   &.details-enter {
     opacity: 0;
     transform: translateX(100px);
