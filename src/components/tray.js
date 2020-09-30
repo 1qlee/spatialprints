@@ -15,11 +15,12 @@ const StyledTray = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   overflow-x: auto;
-  position: fixed;
-  width: 1500px;
+  max-width: 1500px;
+  margin: 0 auto;
   z-index: 1;
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
-    height: 0.75em;
+    height: 2px;
     width: 1em;
   }
   &::-webkit-scrollbar-thumb {
@@ -33,18 +34,20 @@ const StyledTray = styled.div`
 `
 
 const TrayImageHeader = styled.h4`
-  font-family: "Josefin Sans";
+  color: ${colors.gray.eightHundred};
+  font-family: "Crimson Pro";
+  margin-bottom: 0.25rem;
   font-weight: 400;
-  letter-spacing: 1px;
+  text-transform: capitalize;
 `
 
 const TrayImageContent = styled.div`
   user-select: none;
   p {
-    color: red;
     user-select: none;
-    &.is-available {
-      color: green;
+    line-height: 1.5;
+    &.is-green {
+      color: ${colors.green};
     }
   }
 `
@@ -67,6 +70,10 @@ const TrayImageWrapper = styled.div`
     img {
       user-select: none;
     }
+  }
+  &.is-dragging {
+    pointer-events: none;
+    user-select: none;
   }
   &.is-selected {
     border-color: ${colors.primary.sixHundred};
@@ -113,6 +120,7 @@ function FadeShit(props) {
 function Tray({ allProducts, setCurrentProduct, currentProduct }) {
   const trayRef = useRef()
   const [mouseDown, setMouseDown] = useState(false)
+  const [dragging, setDragging] = useState(false)
   const [startX, setStartX] = useState(null)
   const [scrollLeft, setScrollLeft] = useState(null)
   const [current, setCurrent] = useState(null)
@@ -125,11 +133,13 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
   }
 
   function handleMouseLeave() {
+    setDragging(false)
     setMouseDown(false)
   }
 
   function handleMouseUp() {
     trayRef.current.style.cursor = "pointer"
+    setDragging(false)
     setMouseDown(false)
   }
 
@@ -138,6 +148,7 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
       trayRef.current.style.cursor = "pointer"
       return
     }
+    setDragging(true)
     trayRef.current.style.cursor = "grabbing"
     e.preventDefault()
     const x = e.pageX - trayRef.current.offsetLeft
@@ -154,11 +165,20 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
   return (
     <StyledTray ref={trayRef} onMouseDown={e => handleMouseDown(e)} onMouseLeave={() => handleMouseLeave()} onMouseUp={() => handleMouseUp()} onMouseMove={e => handleMouseMove(e)}>
       {allProducts.edges.map(({ node: product }, index) => (
-        <TrayImageWrapper key={product.productId} className={`${currentProduct === index ? "is-selected" : ""}`} onClick={e => handleClick(e, index)} data-product={product.title}>
-          <Image className="has-shadow" fluid={product.images[0].fluid} height="65px" width="65px" draggable={false} loading="eager"/>
+        <TrayImageWrapper
+          key={product.title}
+          className={`
+            ${currentProduct === index ? "is-selected" : ""}
+            ${dragging ? "is-dragging" : ""}
+          `}
+          onClick={e => handleClick(e, index)}
+          data-product={product.title}>
+          {product.thumbnail.fluid && (
+            <Image className="has-shadow" fluid={product.thumbnail.fluid} objectFit="cover" height="65px" width="65px" draggable={false} loading="eager"/>
+          )}
           <TrayImageContent>
             <TrayImageHeader>{product.title}</TrayImageHeader>
-            <p className={product.availability === "In Stock" ? "is-available" : null}>{product.availability}</p>
+            <p className="is-green">{product.price}</p>
           </TrayImageContent>
         </TrayImageWrapper>
       ))}

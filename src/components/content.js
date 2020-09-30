@@ -20,7 +20,7 @@ const Content = styled.div`
     text-align: ${props => props.textAlignCenter ? props.textAlignCenter : "left"};
   }
   p {
-    color: ${props => props.dark ? colors.primary.threeHundred : colors.gray.eightHundred};
+    color: ${colors.gray.sevenHundred};
     line-height: 1.5;
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -48,6 +48,7 @@ const ContentHeader = styled.div`
     font-family: "Josefin Sans";
     text-align: center;
     padding: 0.25rem 0.5rem;
+    color: ${colors.gray.eightHundred};
   }
 `
 

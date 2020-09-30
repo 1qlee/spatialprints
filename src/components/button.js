@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import styled from "styled-components"
 import colors from "../styles/colors"
 
@@ -9,6 +8,7 @@ const Button = styled.button`
   border: none;
   color: ${colors.white};
   display: inline-flex;
+  font-family: "Josefin Sans";
   justify-content: center;
   line-height: 1;
   padding: 1rem;
@@ -16,8 +16,16 @@ const Button = styled.button`
   transition: transform 0.2s, background-color 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
   white-space: nowrap;
   will-change: transform;
+  span {
+    & + .icon {
+      margin-left: 0.25rem;
+    }
+  }
   .icon {
     stroke: ${props => props.color};
+    & + span {
+      margin-left: 0.25rem;
+    }
   }
   &:hover {
     cursor: pointer;
@@ -69,24 +77,27 @@ const ButtonLink = styled.button`
   background-color: ${colors.white};
   border-radius: 0.25rem;
   border: none;
+  cursor: pointer;
   display: inline-flex;
+  font-size: 1rem;
   justify-content: center;
   line-height: 1;
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
+  padding: 0;
   white-space: nowrap;
-  cursor: pointer;
+  span {
+    & + .icon {
+      margin-left: 0.25rem;
+    }
+  }
+  .icon {
+    stroke: ${props => props.color};
+    & + span {
+      margin-left: 0.25rem;
+    }
+  }
 `
-
-function ButtonTracker(props) {
-  const [activeButton, setActiveButton] = useState()
-
-  return (
-    <ButtonWrapper onClick={e => setActiveButton(e.target)}>
-      {props.children}
-    </ButtonWrapper>
-  )
-}
 
 const ButtonWrapper = styled.div`
   display: flex;

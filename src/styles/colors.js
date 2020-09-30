@@ -5,7 +5,7 @@ const colors = {
     threeHundred: "#E2E8F0",
     fourHundred: "#CBD5E0",
     fiveHundred: "#A0AEC0",
-    sixHundred: "#718096",
+    sixHundred: "#68768a",
     sevenHundred: "#4A5568",
     eightHundred: "#2D3748",
     nineHundred: "#1A202C"
@@ -19,6 +19,12 @@ const colors = {
   cream: "#fffdd0",
   black: "#000",
   yellow: "#fdb44e",
+  green: "#128439",
+  red: "#d53e3e",
+  blueNotificationBackground: "rgba(0, 0, 129, 0.05)",
+  yellowNotificationBackground: "rgba(253, 180, 78, 0.05)",
+  redNotificationBackground: "rgba(213, 62, 62, 0.05)",
+  greenNotificationBackground: "rgba(18, 132, 57, 0.05)",
   shadow: {
     float: "rgba(0,0,0,0.2)",
     inset: "rgba(0,0,0,0.4)",

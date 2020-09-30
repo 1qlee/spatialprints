@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import colors from "../styles/colors"
 
 const Form = styled.form`
   display: block;
   margin-bottom: 1rem;
+  font-size: 1rem;
 `
 
 const FormWrapper = styled.div`
@@ -69,12 +70,21 @@ const Label = styled.label`
   font-size: 0.6rem;
   font-weight: 700;
   line-height: 1;
+  font-family: "Josefin Sans";
+  margin-bottom: 0.5rem;
+  display: block;
 `
 
-const Fieldset = styled.fieldset`
-  &.is-flex {
-    display: flex;
-    align-items: center;
+const FieldSet = styled.fieldset`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const FieldSetElement = styled.div`
+  flex: 1;
+  &:not(:last-child) {
+    margin-right: 1rem;
   }
 `
 
@@ -161,7 +171,7 @@ const Textarea = styled.textarea`
   display: block;
   max-width: 100%;
   min-width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   resize: none;
   border-radius: 0.25rem;
   border: 1px solid ${colors.gray.fourHundred};
@@ -174,4 +184,4 @@ const Textarea = styled.textarea`
   }
 `
 
-export { Details, Form, FormWrapper, Input, Fieldset, Label, Select, Textarea }
+export { Details, Form, FormWrapper, Input, FieldSet, FieldSetElement, Label, Select, Textarea }

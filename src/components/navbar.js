@@ -2,12 +2,12 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
-  <header
+const Navbar = ({ siteTitle }) => (
+  <nav
     style={{
       background: `white`,
-      marginBottom: `1.45rem`,
       padding: `1rem`,
+      height: `60px`,
     }}
   >
     <div
@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => (
         maxWidth: 1500,
       }}
     >
-      <p style={{ margin: 0 }}>
+      <h4>
         <Link
           to="/"
           style={{
@@ -27,17 +27,17 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
-      </p>
+      </h4>
     </div>
-  </header>
+  </nav>
 )
 
-Header.propTypes = {
+Navbar.propTypes = {
   siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+Navbar.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default Navbar

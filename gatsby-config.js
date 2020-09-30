@@ -52,8 +52,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Josefin Sans\:400,400i,700,700i`,
-          `Libre Baskerville\:400,700`
+          `Josefin Sans\:400,700`,
+          `Crimson Pro\:400,400i,700,700i`
         ]
       }
     },

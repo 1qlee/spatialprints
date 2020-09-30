@@ -14,11 +14,14 @@ const StyledFlexBox = styled.div`
       margin-right: ${props => props.flexDirection === "column" ? "0" : "1rem"};
     }
   }
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `
 
 function FlexBox(props) {
   return (
-    <StyledFlexBox marginBottom={props.marginBottom} justifyContent={props.justifyContent} flexDirection={props.flexDirection} alignItems={props.alignItems} flexWrap={props.flexWrap}>
+    <StyledFlexBox marginBottom={props.marginBottom} justifyContent={props.justifyContent} flexDirection={props.flexDirection} alignItems={props.alignItems} flexWrap={props.flexWrap} width={props.width}>
       {props.children}
     </StyledFlexBox>
   )

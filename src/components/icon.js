@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import ArrowLeftIcon from "../assets/feather/arrow-left.svg"
+import ArrowRightIcon from "../assets/feather/arrow-right.svg"
 import ChevronDownIcon from "../assets/feather/chevron-down.svg"
 
 const StyledIcon = styled.span`
@@ -12,7 +13,6 @@ const StyledIcon = styled.span`
   justify-content: center;
   position: relative;
   width: ${props => props.width};
-  margin-right: 0.25rem;
   svg {
     height: ${props => props.height};
     width: ${props => props.height};
@@ -23,18 +23,22 @@ function Icon(props) {
   switch(props.icon) {
     case "ArrowLeft":
       return (
-        <StyledIcon height={props.height} width={props.width}>
+        <StyledIcon className="icon" height={props.height} width={props.width}>
           <ArrowLeftIcon />
         </StyledIcon>
       )
-      break
+    case "ArrowRight":
+      return (
+        <StyledIcon className="icon" height={props.height} width={props.width}>
+          <ArrowRightIcon />
+        </StyledIcon>
+      )
     case "ChevronDown":
       return (
-        <StyledIcon height={props.height} width={props.width}>
+        <StyledIcon className="icon" height={props.height} width={props.width}>
           <ChevronDownIcon />
         </StyledIcon>
       )
-      break
     default:
       return (
         <StyledIcon>
