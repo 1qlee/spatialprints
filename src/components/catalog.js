@@ -8,6 +8,9 @@ const Catalog = styled.main`
   grid-template-rows: auto;
   grid-auto-rows: 1rem;
   margin-top: 2rem;
+  @media only screen and (max-width: 1533px) {
+    padding: 1rem;
+  }
   @media only screen and (max-width: 1025px) {
     grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
   }
@@ -47,9 +50,7 @@ const CatalogContent = styled.div`
   max-width: 300px;
   h4 {
     color: ${colors.gray.eightHundred};
-    font-family: "Josefin Sans";
     margin-bottom: 0.25rem;
-    font-weight: 400;
     text-transform: capitalize;
   }
   p {

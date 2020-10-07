@@ -35,6 +35,13 @@ const Content = styled.div`
   }
 `
 
+const ContentSubtitle = styled.div`
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+`
+
 const ContentHeader = styled.div`
   margin-bottom: 1rem;
   border-bottom: 1px solid ${colors.yellow};
@@ -65,4 +72,4 @@ const ContentBlock = styled.div`
   }
 `
 
-export { Content, ContentHeader,ContentBlock }
+export { Content, ContentSubtitle, ContentHeader,ContentBlock }

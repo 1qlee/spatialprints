@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react"
+import { Link } from "gatsby"
 import styled, { keyframes } from "styled-components"
 import colors from "../styles/colors"
 
@@ -16,6 +17,8 @@ const StyledTray = styled.div`
   justify-content: space-between;
   overflow-x: auto;
   max-width: 1500px;
+  position: fixed;
+  background: ${colors.white};
   margin: 0 auto;
   z-index: 1;
   scrollbar-width: thin;
@@ -30,6 +33,10 @@ const StyledTray = styled.div`
     &:not(:last-child) {
       margin-right: 1rem;
     }
+  }
+  @media only screen and (max-width: 875px) {
+    max-width: 100%;
+    width: 100%;
   }
 `
 
@@ -83,6 +90,9 @@ const TrayImageWrapper = styled.div`
     .gatsby-image-wrapper {
       transform: scale(1.05);
     }
+  }
+  @media only screen and (max-width: 875px) {
+    width: 200px;
   }
 `
 
@@ -167,10 +177,12 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
       {allProducts.edges.map(({ node: product }, index) => (
         <TrayImageWrapper
           key={product.title}
+          href={`#` + product.slug}
           className={`
             ${currentProduct === index ? "is-selected" : ""}
             ${dragging ? "is-dragging" : ""}
           `}
+          draggable="false"
           onClick={e => handleClick(e, index)}
           data-product={product.title}>
           {product.thumbnail.fluid && (

@@ -9,12 +9,9 @@ import "./layout.css"
 const LayoutWrapper = styled.div`
   margin: 0 auto;
   max-width: 1500px;
-  @media only screen and (max-width: 1552px) {
-    padding: 0 1rem;
-  }
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -28,10 +25,10 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar siteTitle={data.site.siteMetadata.title} />
-      <LayoutWrapper>
-        <main>{children}</main>
-        <footer>
-        </footer>
+      <LayoutWrapper className={className}>
+        <main>
+          {children}
+        </main>
       </LayoutWrapper>
     </>
   )

@@ -5,25 +5,50 @@ import colors from "../styles/colors"
 
 const ProductContainer = styled.div`
   display: flex;
-  height: calc(100vh - 169px);
+  min-height: calc(100vh - 169px);
   padding: 1rem 0;
+  @media only screen and (max-width: 1500px) {
+    padding: 1rem;
+  }
+  @media only screen and (max-width: 875px) {
+    flex-direction: column-reverse;
+    margin-bottom: 108px;
+    min-height: auto;
+  }
 `
 
 const ProductContainerContent = styled.div`
   height: 100%;
   max-width: 480px;
   margin-right: 2rem;
+  @media only screen and (max-width: 1130px) {
+    max-width: 400px;
+  }
+  @media only screen and (max-width: 875px) {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
 `
 
 const ProductContainerImage = styled.div`
   height: 100%;
   width: calc(100% - 480px);
+  @media only screen and (max-width: 1130px) {
+    width: calc(100% - 400px);
+  }
+  @media only screen and (max-width: 875px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 `
 
 const ProductImageWrapper = styled.figure`
   width: 100%;
   .gatsby-image-wrapper {
     height: calc(100vh - 240px);
+    @media only screen and (max-width: 875px) {
+      height: auto;
+    }
   }
 `
 
@@ -81,7 +106,7 @@ function ProductImage({ currentProduct, allProducts }) {
   return (
     <ProductImageWrapper>
       {allProducts.edges[currentProduct].node.images.map((image, index) => (
-        <Image key={index} objectFit="contain" fluid={image.fluid} loading="eager" />
+        <Image key={index} objectFit="contain" fluid={image.fluid} />
       ))}
     </ProductImageWrapper>
   )

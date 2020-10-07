@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
 import axios from "axios"
 import colors from "../../styles/colors"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import { Button, ButtonWrapper, ButtonLink } from "../button"
@@ -20,12 +20,24 @@ import SEO from "../seo"
 import Tag from "../tag"
 import Tray from "../tray"
 
-const Product = ({ data }) => {
+const Product = ({ data, location }) => {
+  const setHashLocation = hash => {
+    const formattedHash = hash.slice(1)
+    console.log(formattedHash)
+    const currentProduct = allProducts.edges.findIndex(product => product.node.slug === formattedHash)
+    console.log(currentProduct)
+    if (currentProduct === -1) {
+      return 0
+    }
+    else return currentProduct
+  }
+
   const { currentCategory, allProducts } = data
   const [ showDetails, setShowDetails ] = useState(true)
   const [ showForm, setShowForm ] = useState(false)
-  const [ currentProduct, setCurrentProduct ] = useState(0)
+  const [ currentProduct, setCurrentProduct ] = useState(() => setHashLocation(location.hash))
   const [ currentSize, setCurrentSize ] = useState()
+  const [ test, setTest ] = useState()
   const [ serverState, setServerState ] = useState({
     submitting: false,
     status: null,
@@ -102,6 +114,7 @@ const Product = ({ data }) => {
             {showDetails && (
               <>
                 <Content>
+                  <h1>{test}</h1>
                   <ProductDetails productTitle={allProducts.edges[currentProduct].node.title} categoryTitle={currentCategory.title} price={allProducts.edges[currentProduct].node.price} />
                   <div>
                     <ContentBlock>
@@ -242,13 +255,16 @@ export const query = graphql`
           title
           thumbnail {
             fluid {
-              ...GatsbyContentfulFluid
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           images {
             title
             fluid {
-              ...GatsbyContentfulFluid
+              ...GatsbyContentfulFluid_withWebp
+            }
+            fixed(width: 840) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
           description {
