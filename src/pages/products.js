@@ -9,13 +9,23 @@ import { Input } from "../components/form"
 import { Catalog, CatalogItems, CatalogContent } from "../components/catalog"
 
 const ProductsPage = ({ data }) => {
+  const calculateGridRowEnd = imageHeight => {
+    const gridRowEnd = Math.floor((imageHeight / 1.33 + 150) / 32)
+    console.log(gridRowEnd)
+    return gridRowEnd
+  }
+
   return (
     <Layout>
       <SEO title="Products" />
-      <h1>Materials</h1>
+      <Content className="is-catalog">
+        <h1>Materials</h1>
+        <p>Take a look at our product gallery by browsing the categories below.</p>
+        <p><b>NOTE:</b> These product photos only depict works we have completed in the past and do not represent our full range of capability. Please inquire about any ideas that you may have.</p>
+      </Content>
       <Catalog>
         {data.categories.edges.map(({ node: category}) => (
-          <CatalogItems key={category.title} style={{ gridRowEnd: `span calc(${Math.floor((category.image.resolutions.height / 1.33) + 150) / 32})` }}>
+          <CatalogItems key={category.title} style={{ gridRowEnd: `span ${calculateGridRowEnd(category.image.resolutions.height)}` }}>
             <Link to={`/products/${category.title}`}>
               <Image objectFit="contain" fluid={category.image.fluid} />
               <CatalogContent>

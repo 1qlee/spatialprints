@@ -27,6 +27,7 @@ const ProductContainerContent = styled.div`
   @media only screen and (max-width: 875px) {
     max-width: 100%;
     margin-bottom: 2rem;
+    margin-right: 0;
   }
 `
 

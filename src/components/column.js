@@ -34,6 +34,7 @@ const Column = styled.div`
     &:first-child {
       width: 100%;
       padding: 0 1rem;
+      margin-right: 0;
     }
     &:nth-child(2) {
       width: 100%;

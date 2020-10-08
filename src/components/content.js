@@ -33,6 +33,16 @@ const Content = styled.div`
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
+  &.is-catalog {
+    max-width: 500px;
+    @media only screen and (max-width: 1500px) {
+      padding: 0 1rem;
+    }
+    @media only screen and (max-width: 875px) {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
 `
 
 const ContentSubtitle = styled.div`
