@@ -1,7 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import colors from "../styles/colors"
 
 import { Content } from "../components/content"
+import Notification from "../components/notification"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -21,7 +23,9 @@ const ProductsPage = ({ data }) => {
       <Content className="is-catalog">
         <h1>Materials</h1>
         <p>Take a look at our product gallery by browsing the categories below.</p>
-        <p><b>NOTE:</b> These product photos only depict works we have completed in the past and do not represent our full range of capability. Please inquire about any ideas that you may have.</p>
+        <Notification borderColor={colors.primary.sixHundred} background={colors.blueNotificationBackground}>
+          <p><b>[NOTE]</b> Our production is not limited to what you see on this website. Please inquire about any other materials or designs you might have in mind!</p>
+        </Notification>
       </Content>
       <Catalog>
         {data.categories.edges.map(({ node: category}) => (
