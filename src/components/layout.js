@@ -9,6 +9,7 @@ import "./layout.css"
 const LayoutWrapper = styled.div`
   margin: 0 auto;
   max-width: 1500px;
+  overflow-x: hidden;
 `
 
 const Layout = ({ children, className }) => {
