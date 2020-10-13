@@ -34,6 +34,7 @@ const Content = styled.div`
     margin-bottom: 2rem;
   }
   &.is-catalog {
+    margin-top: 2rem;
     max-width: 500px;
     @media only screen and (max-width: 1500px) {
       padding: 0 1rem;

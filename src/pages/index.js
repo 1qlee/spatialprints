@@ -77,7 +77,7 @@ const IndexPage = ({ data }) => {
               key={activeImage}
               addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
               classNames="images"
-              timeout={100}
+              timeout={200}
               unmountOnExit
               >
               <Image className="has-shadow" objectFit="contain" loading="eager" fluid={data.contentfulWebPage.images[activeImage].fluid} />
@@ -98,7 +98,7 @@ export const query = graphql`
       }
       images {
         fluid {
-          ...GatsbyContentfulFluid
+          ...GatsbyContentfulFluid_tracedSVG
         }
       }
     }

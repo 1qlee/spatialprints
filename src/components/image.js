@@ -9,21 +9,20 @@ const ImageWrapper = styled.figure`
   height: ${props => props.height ? props.height : "auto"};
   width: ${props => props.width ? props.width : "100%"};
   &.images-enter {
-    opacity: 0;
-    transform: scale(0.98);
+    transform: translateX(-100px);
   }
   &.images-enter-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.2s, transform 0.2s;
+    transform: translateX(0);
+    transition: transform 0.2s;
   }
   &.images-exit {
+    transform: translateX(0);
     opacity: 1;
-    transform: scale(0.98);
   }
   &.images-exit-active {
+    transform: translateX(100px);
     opacity: 0;
-    transform: scale(1);
+    transition: opacity 0.2s, transform 0.2s;
   }
   &.has-shadow {
     .gatsby-image-wrapper {
