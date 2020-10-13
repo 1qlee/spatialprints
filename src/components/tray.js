@@ -50,6 +50,7 @@ const TrayImageHeader = styled.h4`
 
 const TrayImageContent = styled.div`
   user-select: none;
+  pointer-events: none;
   p {
     user-select: none;
     line-height: 1.5;
@@ -71,16 +72,21 @@ const TrayImageWrapper = styled.div`
   will-change: transform;
   width: 300px;
   z-index: 99;
+  figure {
+    user-select: none;
+    pointer-events: none;
+    img {
+      user-select: none;
+      pointer-events: none;
+    }
+  }
   .gatsby-image-wrapper {
     transition: transform 0.2s;
     will-change: transform;
-    img {
-      user-select: none;
-    }
   }
   &.is-dragging {
-    pointer-events: none;
     user-select: none;
+    pointer-events: none;
   }
   &.is-selected {
     border-color: ${colors.primary.sixHundred};
@@ -177,11 +183,12 @@ function Tray({ allProducts, setCurrentProduct, currentProduct }) {
       {allProducts.edges.map(({ node: product }, index) => (
         <TrayImageWrapper
           key={product.title}
-          href={`#` + product.slug}
+          to={`#` + product.slug}
           className={`
             ${currentProduct === index ? "is-selected" : ""}
             ${dragging ? "is-dragging" : ""}
           `}
+          as={Link}
           draggable="false"
           onClick={e => handleClick(e, index)}
           data-product={product.title}>

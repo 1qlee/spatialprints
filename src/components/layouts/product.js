@@ -23,9 +23,8 @@ import Tray from "../tray"
 const Product = ({ data, location }) => {
   const setHashLocation = hash => {
     const formattedHash = hash.slice(1)
-    console.log(formattedHash)
     const currentProduct = allProducts.edges.findIndex(product => product.node.slug === formattedHash)
-    console.log(currentProduct)
+
     if (currentProduct === -1) {
       return 0
     }
@@ -45,6 +44,10 @@ const Product = ({ data, location }) => {
     notificationBackground: colors.blueNotificationBackground,
     notificationBorderColor: colors.primary.sixHundred,
     message: "Please fill out the form below and we will reach out to you with more details."
+  })
+
+  useEffect(() => {
+    setCurrentProduct(setHashLocation(location.hash))
   })
 
   const handleServerResponse = (ok, msg, form) => {
@@ -122,26 +125,6 @@ const Product = ({ data, location }) => {
                       <div>
                         {documentToReactComponents(allProducts.edges[currentProduct].node.description.json)}
                       </div>
-                    </ContentBlock>
-                    <ContentBlock>
-                      <p className="heading">Sizes</p>
-                      <ButtonWrapper>
-                        <Button
-                          className={`is-small is-outlined ${currentSize === "S" ? `is-selected` : ""}`}
-                          onClick={e => setCurrentSize(e.target.textContent)}>
-                          S
-                        </Button>
-                        <Button
-                          className={`is-small is-outlined ${currentSize === "M" ? `is-selected` : ""}`}
-                          onClick={e => setCurrentSize(e.target.textContent)}>
-                          M
-                        </Button>
-                        <Button
-                          className={`is-small is-outlined ${currentSize === "L" ? `is-selected` : ""}`}
-                          onClick={e => setCurrentSize(e.target.textContent)}>
-                          L
-                        </Button>
-                      </ButtonWrapper>
                     </ContentBlock>
                   </div>
                 </Content>

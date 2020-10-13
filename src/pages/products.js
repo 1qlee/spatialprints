@@ -13,7 +13,6 @@ import { Catalog, CatalogItems, CatalogContent } from "../components/catalog"
 const ProductsPage = ({ data }) => {
   const calculateGridRowEnd = imageHeight => {
     const gridRowEnd = Math.floor((imageHeight / 1.33 + 150) / 32)
-    console.log(gridRowEnd)
     return gridRowEnd
   }
 
@@ -24,7 +23,7 @@ const ProductsPage = ({ data }) => {
         <h1>Materials</h1>
         <p>Take a look at our product gallery by browsing the categories below.</p>
         <Notification borderColor={colors.primary.sixHundred} background={colors.blueNotificationBackground}>
-          <p><b>[NOTE]</b> Our production is not limited to what you see on this website. Please inquire about any other materials or designs you might have in mind!</p>
+          <p>Our production is not limited to what you see on this website. Please inquire about any other materials or designs you might have in mind!</p>
         </Notification>
       </Content>
       <Catalog>
