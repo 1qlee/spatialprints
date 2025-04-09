@@ -16,6 +16,8 @@ const Columns = styled.div`
 
 const Column = styled.div`
   width: ${props => props.width ? props.width : "50%"};
+  overflow-x:hidden;
+  
   &:first-child {
     margin-right: 2rem;
   }
